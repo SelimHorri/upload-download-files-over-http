@@ -59,6 +59,7 @@ public class FileHandlerServiceImpl implements FileHandlerService {
 		final Resource resource = this.fileHandlerUtil.getByPath(filePath);
 		final HttpHeaders headers = this.fileHandlerUtil.getByResource(resource);
 		fileHandlerDto.setFilePath(filePath);
+		fileHandlerDto.setResource(resource);
 		fileHandlerDto.setHeaders(headers);
 		
 		return fileHandlerDto;

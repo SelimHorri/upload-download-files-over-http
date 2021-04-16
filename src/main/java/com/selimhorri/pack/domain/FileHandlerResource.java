@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.selimhorri.pack.dto.FileHandlerDto;
 import com.selimhorri.pack.service.FileHandlerService;
 
 @RestController
@@ -36,7 +37,8 @@ public class FileHandlerResource {
 	
 	@GetMapping(value = {"/download/{filename}"})
 	public ResponseEntity<Resource> download(@PathVariable("filename") final String filename) throws IOException {
-		return ResponseEntity.ok().contentType(MediaType.parseMediaType(Files.probeContentType(this.fileHandlerService.download(filename).getFilePath()))).headers(this.fileHandlerService.download(filename).getHeaders()).body(this.fileHandlerService.download(filename).getResource());
+		final FileHandlerDto fileHandlerDto = this.fileHandlerService.download(filename);
+		return ResponseEntity.ok().contentType(MediaType.parseMediaType(Files.probeContentType(fileHandlerDto.getFilePath()))).headers(fileHandlerDto.getHeaders()).body(fileHandlerDto.getResource());
 	}
 	
 	
