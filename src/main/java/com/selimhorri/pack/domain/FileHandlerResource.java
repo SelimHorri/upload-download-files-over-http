@@ -38,7 +38,10 @@ public class FileHandlerResource {
 	@GetMapping(value = {"/download/{filename}"})
 	public ResponseEntity<Resource> download(@PathVariable("filename") final String filename) throws IOException {
 		final FileHandlerDto fileHandlerDto = this.fileHandlerService.download(filename);
-		return ResponseEntity.ok().contentType(MediaType.parseMediaType(Files.probeContentType(fileHandlerDto.getFilePath()))).headers(fileHandlerDto.getHeaders()).body(fileHandlerDto.getResource());
+		return ResponseEntity.ok()
+				.contentType(MediaType.parseMediaType(Files.probeContentType(fileHandlerDto.getFilePath())))
+				.headers(fileHandlerDto.getHeaders())
+				.body(fileHandlerDto.getResource());
 	}
 	
 	
