@@ -1,0 +1,8 @@
+version: '3'
+services:
+  upload-download-files-over-http-container:
+    image: selimhorri/upload-download-files-over-http:2.0
+    ports:
+      - 8080:8080
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
